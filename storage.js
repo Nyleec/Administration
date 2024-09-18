@@ -5,7 +5,7 @@ const validCredentials = {
 };
 
 function login() {
-    const enteredUsername = document.getElementById('username').value;
+    const enteredUsername = document.getElementById('username').value.trim().toLowerCase(); // Convert input to lowercase
     const enteredPassword = document.getElementById('password').value;
     const messageDiv = document.getElementById('message');
 
@@ -86,6 +86,7 @@ function getAllStoredData() {
 }
 
 // Function to display the current data from localStorage
+/*
 function updateDataDisplay() {
     const dataContainer = document.getElementById('data-display');
     dataContainer.innerHTML = ''; // Clear previous display
@@ -102,7 +103,7 @@ function updateDataDisplay() {
         dataContainer.innerHTML += `<p><strong>${key}:</strong> ${JSON.stringify(entry)}</p>`;
     }
 }
-
+*/
 // Function to show the input box when the button is clicked
 function showInputBox() {
     const inputBox = document.getElementById('input-box');
@@ -127,6 +128,8 @@ function submitDataKey() {
 }
 
 // On page load, display the stored data
+/*
 window.onload = function() {
     updateDataDisplay();
 };
+*/
