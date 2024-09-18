@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credentials</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .dashboard-container {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e53935;
+        }
+
+        /* Hidden by default */
+        #input-box {
+            display: none;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 1200px) {
+            .dashboard-container {
+                width: 80%;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                width: 90%;
+                padding: 30px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-container {
+                width: 100%;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+    <script src="storage.js" defer></script>
+</head>
+<body>
+    <div class="dashboard-container">
+
+    <h1>Credentials</h1>
+    <p>To save a new password</p>
+    <p>Enter the website and password below, then click save</p>
+            
+    <label for="dataKey">Website Name:</label>
+    <input type="text" id="dataKey">
+    <br><br>
+    <label for="dataValue">Password:</label>
+    <input type="text" id="dataValue">
+    <br><br>
+    <button onclick="saveData()">Save Data</button>
+    <button onclick="loadData()">Load Data</button>
+
+    <!-- Button to show input box -->
+    <button onclick="showInputBox()">Remove Data Entry</button>
+
+    <!-- Input box for user to type data key, hidden by default -->
+    <div id="input-box">
+        <input type="text" id="dataKeyInput" placeholder="Enter data key" />
+        <button onclick="submitDataKey()">Submit</button>
+    </div>
+
+    <h2>Stored Data:</h2>
+    <div class="grid-container" id="gridDisplay">
+        <!-- Data will be displayed here in a grid format -->
+    </div>
+    </div>
+
+</body>
+</html>
