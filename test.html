@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hashing in JavaScript</title>
+    <script>
+        async function hashString(input) {
+            // Convert the input string to a Uint8Array (required for the hashing function)
+            const encoder = new TextEncoder();
+            const data = encoder.encode(input);
+
+            // Use SubtleCrypto's digest method to hash the data
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+
+            // Convert the ArrayBuffer to a hex string
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        }
+
+        async function handleHash() {
+            const inputString = document.getElementById('inputString').value;
+            const hashedString = await hashString(inputString);
+            document.getElementById('hashResult').innerText = 'Hashed String (SHA-256): ' + hashedString;
+        }
+    </script>
+</head>
+<body>
+    <h1>Hash a String in JavaScript (SHA-256)</h1>
+    <input type="text" id="inputString" placeholder="Enter string to hash">
+    <button onclick="handleHash()">Hash it!</button>
+    <p id="hashResult"></p>
+</body>
+</html>

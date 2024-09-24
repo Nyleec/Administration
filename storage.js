@@ -1,7 +1,7 @@
 // Predefined user credentials (for demo purposes)
 const validCredentials = {
-    username: 'barbara.deale@yahoo.com',
-    password: 'Littlety1$'
+    username: '72a9ee34dde342c94a499e19b2a5814bdb92078bfea1f5f0e7a9cae2b8e8707d',
+    password: '346738f09b87cf1f654f56005dde07ae3c57c9675d26dbac3ab7dc04bb5049c7$'
 };
 
 function login() {
@@ -133,3 +133,27 @@ window.onload = function() {
     updateDataDisplay();
 };
 */
+
+// edit to hash the username AND the password
+async function hashUser(input1, input2) {
+    // Convert the input string to a Uint8Array (required for the hashing function)
+    const encoder = new TextEncoder();
+    const data = encoder.encode(input);
+
+    // Use SubtleCrypto's digest method to hash the data
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+
+    // Convert the ArrayBuffer to a hex string
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
+
+/*
+async function handleHash() {
+    const inputString = document.getElementById('inputString').value;
+    const hashedString = await hashString(inputString);
+    document.getElementById('hashResult').innerText = 'Hashed String (SHA-256): ' + hashedString;
+}
+*/
+
